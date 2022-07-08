@@ -1,6 +1,8 @@
 import streamlit
 import pandas
+import requests
 import snowflake.connector
+from urllib.error import URLError
 
 streamlit.title('My mom''s new Healthy diner')
 
@@ -21,8 +23,6 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 # Display the table on the page.
 streamlit.dataframe(fruits_to_show)
 
-
-import requests
 streamlit.header("Fruityvice Fruit Advice!")
 # Ask user to input fruit name
 fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
@@ -45,4 +45,5 @@ streamlit.dataframe(my_data_rows)
 add_fruit = streamlit.text_input('What fruit would you like to add?')
 streamlit.write('Thanks for adding ', add_fruit)
 
+streamlit.stop()
 my_cur.execute("insert into pc_rivery_db.public.fruit_load_list values ('from streamlit')")
